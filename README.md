@@ -1,6 +1,6 @@
 Pickle Scorer App
 
-A Flutter web scoreboard for pickleball singles and doubles. Track rally winners, side-outs, serving order, and the called score. Games default to 11 points and can be set to 15 or 21; all games must be won by two.
+A Flutter web scoreboard for pickleball singles and doubles. Track rally winners, side-outs, serving order, and the called score. Games default to 11 points and can be set to 7, 15, or 21; all games must be won by two.
 
 ## Run locally
 

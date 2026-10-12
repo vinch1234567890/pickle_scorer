@@ -22,7 +22,12 @@ void main() {
     });
 
     test('serving side scores and the game must be won by two', () {
-      var match = const PickleballMatch(homeScore: 10, awayScore: 10, serverNumber: 1, openingSequence: false);
+      var match = const PickleballMatch(
+        homeScore: 10,
+        awayScore: 10,
+        serverNumber: 1,
+        openingSequence: false,
+      );
       match = match.rallyWonBy(0);
       expect(match.homeScore, 11);
       expect(match.winner, isNull);
@@ -32,7 +37,10 @@ void main() {
     });
 
     test('doubles side-out advances server before changing teams', () {
-      var match = const PickleballMatch(serverNumber: 1, openingSequence: false);
+      var match = const PickleballMatch(
+        serverNumber: 1,
+        openingSequence: false,
+      );
       match = match.rallyWonBy(1);
       expect(match.servingSide, 0);
       expect(match.serverNumber, 2);
@@ -42,7 +50,11 @@ void main() {
     });
 
     test('singles changes serve at side-out and omits server number', () {
-      const match = PickleballMatch(mode: MatchMode.singles, serverNumber: 1, openingSequence: false);
+      const match = PickleballMatch(
+        mode: MatchMode.singles,
+        serverNumber: 1,
+        openingSequence: false,
+      );
       final next = match.rallyWonBy(1);
       expect(next.servingSide, 1);
       expect(next.scoreCall, '0 - 0');
@@ -51,10 +63,10 @@ void main() {
 
   testWidgets('scoreboard controls update the called score', (tester) async {
     await tester.pumpWidget(const PickleScorerApp());
-    expect(find.text('0 - 0 - 2'), findsOneWidget);
+    expect(find.bySemanticsLabel('0 - 0 - 2'), findsOneWidget);
     await tester.ensureVisible(find.byKey(const ValueKey('rally-0')));
     await tester.tap(find.byKey(const ValueKey('rally-0')));
     await tester.pumpAndSettle();
-    expect(find.text('1 - 0 - 2'), findsOneWidget);
+    expect(find.bySemanticsLabel('1 - 0 - 2'), findsOneWidget);
   });
 }
